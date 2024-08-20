@@ -1,0 +1,6 @@
+[hooks]
+pre = ["pre-script.rhai"]
+
+[placeholders]
+project_description = { type = "string", prompt = "Describe your project" , default = "This is a simple web api not a crabby one!" }
+license = { type = "string", prompt = "What license to use?", choices = ["MIT", "Unrestricted"], default = "MIT" }

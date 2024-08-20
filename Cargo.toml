@@ -26,4 +26,4 @@ name = "{{project-name}}"
 version = "0.1.0"
 edition = "2021"
 authors = ["{{authors}}"]
-description = "{{description}}"
+description = "{{project_description}}"
