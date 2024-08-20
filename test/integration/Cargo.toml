@@ -1,0 +1,8 @@
+[package]
+name = "integration"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = """
+Integration tests to make sure api is works well together with all dependent components
+"""

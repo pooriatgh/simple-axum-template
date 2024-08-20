@@ -1,0 +1,13 @@
+[package]
+name = "infrastructure"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = """
+Workspace which has all code related to manage external resources and dependencies, such as db, network, connections, etc.
+"""
+
+[dependencies]
+domain = { path = "../domain" , version = "0.0.0" }
+serde = { workspace = true }
+dashmap = { workspace = true }

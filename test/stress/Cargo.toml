@@ -1,0 +1,24 @@
+[package]
+name = "stress"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = """
+Testing utilities to stress tests api
+"""
+
+
+[dev-dependencies]
+criterion = "0.5.1"
+httpc-test = "0.1.1"
+tokio = { workspace = true , features = ["full"] }
+serde = { workspace = true , features = ["derive"] }
+serde_json = { workspace = true }
+core = { path = "../../core", version = "0.0.0" }
+domain = { path = "../../domain", version = "0.0.0" }
+api ={ path = "../../api", version = "0.0.0" }
+
+
+[[bench]]
+name = "get_hello_world"
+harness = false

@@ -1,0 +1,29 @@
+[package]
+name = "api"
+version = "0.0.0"
+edition = "2021"
+publish = false
+default-run = "api"
+description = """
+Web API interface which will contain all the routing, and service calls.
+"""
+
+
+[dependencies]
+axum = "0.7.5"
+env_logger = { workspace = true }
+log = { workspace = true }
+tokio = { workspace = true , features = ["full"] }
+serde = { workspace = true , features = ["derive"] }
+serde_json = { workspace = true }
+utoipa = { workspace = true, features = ["axum_extras"]}
+utoipa-swagger-ui = { version = "7.1.0", features = ["axum"] }
+uuid = { workspace = true, features = ["v4","fast-rng",]}
+core = { path = "../core", version = "0.0.0" }
+domain = { path = "../domain", version = "0.0.0" }
+infrastructure ={ path = "../infrastructure", version = "0.0.0" }
+
+
+[dev-dependencies]
+anyhow = "1.0"
+httpc-test = "0.1.1"
