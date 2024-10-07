@@ -1,6 +1,8 @@
 use core::hello_world_service::HelloWorldService;
+use std::sync::Arc;
 
 use axum::{middleware, Router};
+use domain::configuration::{self, Configuration, KafkaConfiguration};
 use infrastructure::db::hello_world_db::HelloWorldDb;
 
 use crate::routes::v0::hello_world::HelloWorldRouter;
@@ -15,11 +17,14 @@ use crate::middlewares::response_mapper::ResponseMapper;
 /// # Panics
 /// Panics when given IP address is invalid
 pub async fn start_server(ip: &str) {
-    let db = HelloWorldDb::new();
-    let model_controller = HelloWorldService::new(db);
+    let db = Arc::new(HelloWorldDb::new());
+    let configuration = Arc::new(Configuration::new(KafkaConfiguration::default()));
+    let hello_world_controller = Arc::new(HelloWorldService::new(db, configuration));
 
     let app = Router::new()
-        .merge(HelloWorldRouter::setup_routes(model_controller.clone()))
+        .merge(HelloWorldRouter::setup_routes(
+            hello_world_controller.clone(),
+        ))
         .merge(SwaggerRouter::setup_routes())
         .layer(middleware::map_response(
             ResponseMapper::main_response_mapper,
